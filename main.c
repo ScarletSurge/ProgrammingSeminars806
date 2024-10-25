@@ -3,6 +3,8 @@
 #include <stdlib.h>
 
 #include "include\dump.h"
+#include "include\unidirectional_list.h"
+#include "include\binary_search_tree.h"
 
 #define __DEBUG
 
