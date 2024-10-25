@@ -3,6 +3,9 @@
 #include <stdarg.h>
 #include <ctype.h>
 #include <string.h>
+#include <time.h>
+
+#include "../include/recursion.h"
 
 #define INPUT_ERROR (10)
 
@@ -13,7 +16,8 @@
 
 int allocation_demo(
     int argc,
-    char *argv[]);
+    char *argv[],
+    int **result);
 
 int sum(int, int);
 
@@ -141,6 +145,13 @@ int average(
     return 0;
 }
 
+int compare_int_value(
+    int const *value1,
+    int const *value2)
+{
+    return *value1 - *value2;
+}
+
 int main(
     int argc,
     char *argv[])
@@ -165,7 +176,76 @@ int main(
     // return files_demo(argc, argv);
 
     // return malloc_demo(argc, argv);
-    return allocation_demo(argc, argv);
+    // return allocation_demo(argc, argv);
+
+    FILE *fout;
+    int i, j;
+    int **result_permutations = NULL;
+    size_t result_permutations_count = 0;
+    int const items_count = 13;
+
+    srand((unsigned int)time(NULL));
+
+    int *arr = (int *)malloc(items_count * sizeof(int));
+    if (!arr)
+    {
+        printf("memory allocation error!11!1");
+
+        return 1;
+    }
+
+    // [a...b] -> [0...b-a] + a -> rand() % (b - a + 1) + a
+
+    for (i = 0; i < items_count; ++i)
+    {
+        // конгруэнтный линейный генератор псевдослучайных чисел
+        arr[i] = rand() % 2001 - 1000;
+    }
+
+    if (!(fout = fopen("result.txt", "w")))
+    {
+        printf("Error opening file!!1!1");
+
+        free(arr);
+
+        return -1;
+    }
+
+    switch (permutations(arr, items_count, &result_permutations, &result_permutations_count, compare_int_value))
+    {
+        case LYUBLINO_OTRABOTALI:
+            for (i = 0; i < result_permutations_count; ++i)
+            {
+                fprintf(fout, "Permutation #%d: [ ", i + 1);
+
+                for (j = 0; j < items_count; ++j)
+                {
+                    fprintf(fout, "%d%s ", result_permutations[i][j], j == items_count - 1 ? "" : ",");
+                }
+
+                fprintf(fout, "]\n");
+
+                free(result_permutations[i]);
+            }
+
+            // TODO: use vilka function =)
+
+            free(result_permutations);
+
+            break;
+        case INVALID_PARAMETER_VALUE:
+            printf("Invalid parameter value!");
+            break;
+        case EQUAL_VALUES_FOUND:
+            printf("Found equal by passed comparer values!");
+            break;
+        case MEMORY_ALLOCATION_CANT_BE_PERFORMED:
+            printf("Memory allocation error!");
+            break;
+    }
+
+    fclose(fout);
+    free(arr);
 
     return 0;
 }

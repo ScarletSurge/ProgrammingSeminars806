@@ -3,4 +3,4 @@ project(untitled1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(ProgrammingSeminars main.c include/recursion.h src/recursion.c)
+add_executable(ProgrammingSeminars src/main.c include/recursion.h src/recursion.c)

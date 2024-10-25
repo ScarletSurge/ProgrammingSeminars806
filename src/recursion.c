@@ -2,11 +2,7 @@
 
 #include <stdio.h>
 #include <malloc.h>
-
-#define LYUBLINO_OTRABOTALI 0
-#define INVALID_PARAMETER_VALUE 1
-#define EQUAL_VALUES_FOUND 2
-#define MEMORY_ALLOCATION_CANT_BE_PERFORMED 3
+#include <string.h>
 
 // paging
 int permutations(
@@ -53,7 +49,7 @@ int permutations(
         return MEMORY_ALLOCATION_CANT_BE_PERFORMED;
     }
 
-    for (i = 2; i < items_count; ++i)
+    for (i = 2; i <= items_count; ++i)
     {
         permutations_count *= i;
     }
@@ -83,12 +79,13 @@ int permutations(
         }
     }
 
-    size_t current_permutation_to_insert_index = 0;
     size_t result_permutations_index_to_insert_permutation = 0;
 
-    switch (permutations_inner(current_permutation, &current_permutation_to_insert_index, not_inserted_items, items_count, target_permutations, &result_permutations_index_to_insert_permutation))
+    memcpy(not_inserted_items, items, items_count * sizeof(int));
+
+    switch (permutations_inner(items_count, current_permutation, 0, not_inserted_items, items_count, target_permutations, &result_permutations_index_to_insert_permutation))
     {
-        // TODO: You can do it ._.
+
     }
 
     free(current_permutation);
@@ -101,11 +98,47 @@ int permutations(
 }
 
 int permutations_inner(
+    size_t items_count,
     int *current_permutation,
+    size_t current_permutation_to_insert_index,
     int *not_inserted_items,
     size_t not_inserted_items_count,
     int * const *result_permutations,
-    size_t *current_permutation_to_insert_index)
+    size_t *result_permutations_index_to_insert_permutation)
 {
+    // TODO: parameters validation - You can do it :)
 
+    int not_inserted_item_index;
+
+    // if (current_permutation_to_insert_index == items_count)
+    if (not_inserted_items_count == 0)
+    {
+        // permutation is ready to be copied to result
+
+        memcpy(result_permutations[*result_permutations_index_to_insert_permutation], current_permutation,
+               sizeof(int) * items_count);
+        ++*result_permutations_index_to_insert_permutation;
+
+        return LYUBLINO_OTRABOTALI;
+    }
+
+    for (not_inserted_item_index = 0; not_inserted_item_index < not_inserted_items_count; ++not_inserted_item_index)
+    {
+        current_permutation[current_permutation_to_insert_index] = not_inserted_items[not_inserted_item_index];
+
+        memcpy(not_inserted_items + not_inserted_item_index, not_inserted_items + not_inserted_item_index + 1, (not_inserted_items_count - not_inserted_item_index - 1) * sizeof(int));
+
+        switch (permutations_inner(items_count, current_permutation, current_permutation_to_insert_index + 1, not_inserted_items, not_inserted_items_count - 1, result_permutations, result_permutations_index_to_insert_permutation))
+        {
+            case LYUBLINO_OTRABOTALI:
+                // TODO: тут типа чёто есть =)
+                break;
+        }
+
+        memcpy(not_inserted_items + not_inserted_item_index + 1, not_inserted_items + not_inserted_item_index, (not_inserted_items_count - not_inserted_item_index - 1) * sizeof(int));
+
+        not_inserted_items[not_inserted_item_index] = current_permutation[current_permutation_to_insert_index];
+    }
+
+    return LYUBLINO_OTRABOTALI;
 }
