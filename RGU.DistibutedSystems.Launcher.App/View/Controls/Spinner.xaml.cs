@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using RGU.DistributedSystems.WPF.MVVM.ViewModel;
@@ -17,13 +18,13 @@ public partial class Spinner:
     public sealed class SpinnerItemViewModel:
         ViewModelBase
     {
-        
+
         #region Fields
         
         /// <summary>
         /// 
         /// </summary>
-        private double _radius;
+        private double _radiusCoefficient;
         
         /// <summary>
         /// 
@@ -32,20 +33,39 @@ public partial class Spinner:
 
         #endregion
         
+        #region Constructors
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="radiusCoefficient"></param>
+        /// <param name="phi"></param>
+        public SpinnerItemViewModel(
+            double radiusCoefficient,
+            double phi)
+        {
+            // TODO: validate
+
+            RadiusCoefficient = radiusCoefficient;
+            Phi = phi;
+        }
+        
+        #endregion
+        
         #region Properties
         
         /// <summary>
         /// 
         /// </summary>
-        public double Radius
+        public double RadiusCoefficient
         {
             get =>
-                _radius;
+                _radiusCoefficient;
 
             set
             {
-                _radius = value;
-                RaisePropertiesChanged(nameof(Radius));
+                _radiusCoefficient = value;
+                RaisePropertiesChanged(nameof(RadiusCoefficient));
             }
         }
         
@@ -72,10 +92,7 @@ public partial class Spinner:
     
     #region Fields
     
-    /// <summary>
-    /// 
-    /// </summary>
-    private SpinnerItemViewModel[] _items;
+    
     
     #endregion
 
@@ -87,17 +104,20 @@ public partial class Spinner:
     public Spinner()
     {
         InitializeComponent();
+        Items = new ObservableCollection<SpinnerItemViewModel>();
     }
     
     #endregion
     
     #region Properties
-    
+
     /// <summary>
     /// 
     /// </summary>
-    public SpinnerItemViewModel[] Items =>
-        _items;
+    public ObservableCollection<SpinnerItemViewModel> Items
+    {
+        get;
+    }
     
     #endregion
     
@@ -118,7 +138,42 @@ public partial class Spinner:
     /// <summary>
     /// 
     /// </summary>
-    public static readonly DependencyProperty ItemsCountProperty = DependencyProperty.Register(nameof(ItemsCount), typeof(int), typeof(Spinner));
+    public static readonly DependencyProperty ItemsCountProperty = DependencyProperty.Register(nameof(ItemsCount), typeof(int), typeof(Spinner), new PropertyMetadata(ItemsCountPropertyChangedCallback));
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dependencyObject"></param>
+    /// <param name="eventArgs"></param>
+    private static void ItemsCountPropertyChangedCallback(
+        DependencyObject dependencyObject,
+        DependencyPropertyChangedEventArgs eventArgs)
+    {
+        if (dependencyObject is not Spinner spinner)
+        {
+            // TODO: throw an exception
+
+            return;
+        }
+
+        var itemsNewCount = (int)eventArgs.NewValue;
+
+        var newItems = new SpinnerItemViewModel[itemsNewCount];
+
+        for (var i = 0; i < itemsNewCount; ++i)
+        {
+            newItems[i] = new SpinnerItemViewModel(
+                // TODO: get value from DP
+                0.15, 360.0 / itemsNewCount * i);
+        }
+
+        spinner.Items.Clear();
+
+        foreach (var newItem in newItems)
+        {
+            spinner.Items.Add(newItem);
+        }
+    }
 
     public Brush ItemsBrush
     {
@@ -132,7 +187,7 @@ public partial class Spinner:
     /// <summary>
     /// 
     /// </summary>
-    public static readonly DependencyProperty ItemsBrushProperty = DependencyProperty.Register(nameof(ItemsBrush), typeof(Brush), typeof(Spinner));
+    public static readonly DependencyProperty ItemsBrushProperty = DependencyProperty.Register(nameof(ItemsBrush), typeof(Brush), typeof(Spinner), new PropertyMetadata(Brushes.Black));
     
     #endregion
     

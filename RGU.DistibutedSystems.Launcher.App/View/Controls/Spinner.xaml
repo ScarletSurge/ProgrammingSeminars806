@@ -4,10 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:RGU.DistributedSystems.Launcher.App.Converter"
-             xmlns:system="clr-namespace:System;;assembly=mscorlib"
+             xmlns:nestedMultiBinding="clr-namespace:RGU.DistributedSystems.WPF.MVVM.NestedMultiBinding;assembly=RGU.DistributedSystems.WPF.MVVM"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:viewControls="clr-namespace:RGU.DistibutedSystems.Launcher.App.View.Controls"
              mc:Ignorable="d">
     <ItemsControl ItemsSource="{Binding Items, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}}">
+        <!--ItemsControl.Resources>
+            <ResourceDictionary>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Style.Setters>
+                        <Setter Property="Text"
+                                Value="text from style" />
+                        <Setter Property="Foreground"
+                                Value="Chocolate" />
+                    </Style.Setters>
+                </Style>
+            </ResourceDictionary>
+        </ItemsControl.Resources-->
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <Canvas />
@@ -17,37 +30,123 @@
             <DataTemplate>
                 <Ellipse Fill="{Binding ItemsBrush, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}}">
                     <Ellipse.Width>
-                        <MultiBinding Converter="{converters:ArithmeticConverter}"
-                                      ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
-                            <MultiBinding.Bindings>
-                                <Binding Path="Radius" />
-                                <Binding>
-                                    <Binding.Source>
-                                        <system:Double>
-                                            2.0
-                                        </system:Double>
-                                    </Binding.Source>
-                                </Binding>
-                            </MultiBinding.Bindings>
-                        </MultiBinding>
+                        <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
+                                                               ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
+                            <nestedMultiBinding:NestedMultiBinding.Bindings>
+                                <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
+                                                                       ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
+                                    <nestedMultiBinding:NestedMultiBinding.Bindings>
+                                        <Binding Path="RadiusCoefficient"
+                                                 Mode="OneWay" />
+                                        <Binding>
+                                            <Binding.Source>
+                                                <system:Double>
+                                                    2.0
+                                                </system:Double>
+                                            </Binding.Source>
+                                        </Binding>
+                                    </nestedMultiBinding:NestedMultiBinding.Bindings>
+                                </nestedMultiBinding:NestedMultiBinding>
+                                <Binding Path="ActualWidth"
+                                         Mode="OneWay"
+                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}" />
+                            </nestedMultiBinding:NestedMultiBinding.Bindings>
+                        </nestedMultiBinding:NestedMultiBinding>
                     </Ellipse.Width>
                     <Ellipse.Height>
-                        <MultiBinding Converter="{converters:ArithmeticConverter}"
-                                      ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
-                            <MultiBinding.Bindings>
-                                <Binding Path="Radius" />
-                                <Binding>
-                                    <Binding.Source>
-                                        <system:Double>
-                                            2.0
-                                        </system:Double>
-                                    </Binding.Source>
-                                </Binding>
-                            </MultiBinding.Bindings>
-                        </MultiBinding>
+                        <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
+                                                               ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
+                            <nestedMultiBinding:NestedMultiBinding.Bindings>
+                                <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
+                                                                       ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
+                                    <nestedMultiBinding:NestedMultiBinding.Bindings>
+                                        <Binding Path="RadiusCoefficient"
+                                                 Mode="OneWay" />
+                                        <Binding>
+                                            <Binding.Source>
+                                                <system:Double>
+                                                    2.0
+                                                </system:Double>
+                                            </Binding.Source>
+                                        </Binding>
+                                    </nestedMultiBinding:NestedMultiBinding.Bindings>
+                                </nestedMultiBinding:NestedMultiBinding>
+                                <Binding Path="ActualHeight"
+                                         Mode="OneWay"
+                                         RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}" />
+                            </nestedMultiBinding:NestedMultiBinding.Bindings>
+                        </nestedMultiBinding:NestedMultiBinding>
                     </Ellipse.Height>
                 </Ellipse>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
+        <ItemsControl.ItemContainerStyle>
+            <Style>
+                <Style.Setters>
+                    <Setter Property="Canvas.Left">
+                        <Setter.Value>
+                            <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
+                                                                   ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
+                                <nestedMultiBinding:NestedMultiBinding.Bindings>
+                                    <Binding Path="ActualWidth"
+                                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}" />
+                                    <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
+                                                                           ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Minus}">
+                                        <nestedMultiBinding:NestedMultiBinding.Bindings>
+                                            <Binding>
+                                                <Binding.Source>
+                                                    <system:Double>
+                                                        1.0
+                                                    </system:Double>
+                                                </Binding.Source>
+                                            </Binding>
+                                            <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
+                                                ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
+                                                <nestedMultiBinding:NestedMultiBinding.Bindings>
+                                                    <Binding Path="RadiusCoefficient"
+                                                             Mode="OneWay" />
+                                                    <Binding>
+                                                        <Binding.Source>
+                                                            <system:Double>
+                                                                2.0
+                                                            </system:Double>
+                                                        </Binding.Source>
+                                                    </Binding>
+                                                </nestedMultiBinding:NestedMultiBinding.Bindings>
+                                            </nestedMultiBinding:NestedMultiBinding>
+                                        </nestedMultiBinding:NestedMultiBinding.Bindings>
+                                    </nestedMultiBinding:NestedMultiBinding>
+                                </nestedMultiBinding:NestedMultiBinding.Bindings>
+                            </nestedMultiBinding:NestedMultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Canvas.Top">
+                        <Setter.Value>
+                            <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
+                                                                   ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
+                                <nestedMultiBinding:NestedMultiBinding.Bindings>
+                                    <Binding Path="ActualHeight"
+                                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}" />
+                                    <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
+                                                                           ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Minus}">
+                                        <nestedMultiBinding:NestedMultiBinding.Bindings>
+                                            <Binding>
+                                                <Binding.Source>
+                                                    <system:Double>
+                                                        0.5
+                                                    </system:Double>
+                                                </Binding.Source>
+                                            </Binding>
+                                            <Binding Path="RadiusCoefficient"
+                                                     Mode="OneWay" />
+                                        </nestedMultiBinding:NestedMultiBinding.Bindings>
+                                    </nestedMultiBinding:NestedMultiBinding>
+                                </nestedMultiBinding:NestedMultiBinding.Bindings>
+                            </nestedMultiBinding:NestedMultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                </Style.Setters>
+            </Style>
+        </ItemsControl.ItemContainerStyle>
     </ItemsControl>
 </UserControl>
