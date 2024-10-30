@@ -152,6 +152,14 @@ int compare_int_value(
     return *value1 - *value2;
 }
 
+#include "../include/array.h"
+
+void printf_callback(
+    T const *value_ptr)
+{
+    printf("%d ", *value_ptr);
+}
+
 int main(
     int argc,
     char *argv[])
@@ -178,7 +186,22 @@ int main(
     // return malloc_demo(argc, argv);
     // return allocation_demo(argc, argv);
 
-    FILE *fout;
+    int i;
+    array instance;
+    initialize_array(&instance);
+
+    for (i = 0; i < 100; ++i)
+    {
+        insert_into_array(&instance, &i, 0);
+        forward_const_traversion_array(&instance, printf_callback);
+        printf("\n");
+    }
+
+    deinitialize_array(&instance);
+
+    return 0;
+
+    /*FILE *fout;
     int i, j;
     int **result_permutations = NULL;
     size_t result_permutations_count = 0;
@@ -247,7 +270,7 @@ int main(
     fclose(fout);
     free(arr);
 
-    return 0;
+    return 0;*/
 }
 
 int sum(
