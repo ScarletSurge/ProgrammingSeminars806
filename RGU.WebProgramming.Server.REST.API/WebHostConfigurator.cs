@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
-
 using RGU.WebProgramming.Server.Core;
 using RGU.WebProgramming.Server.Grpc.Settings;
 
-namespace RGU.WebProgramming.Server.Grpc;
+namespace RGU.WebProgramming.Server.REST.API;
 
 /// <summary>
 /// 
@@ -16,7 +15,7 @@ public sealed class WebHostConfigurator:
 {
     
     #region RGU.WebProgramming.Server.Core.IWebHostConfigurator implementation
-    
+
     /// <inheritdoc cref="IWebHostConfigurator.Configure" />
     public void Configure(
         IWebHostBuilder webHostBuilder)
@@ -32,7 +31,7 @@ public sealed class WebHostConfigurator:
                     serverSettings.ListenPort,
                     listenOptions =>
                     {
-                        listenOptions.Protocols = HttpProtocols.Http2;
+                        listenOptions.Protocols = HttpProtocols.Http1;
                         // listenOptions.UseHttps(serverSettings.CertPath, serverSettings.CertPassword);
                     });
             });

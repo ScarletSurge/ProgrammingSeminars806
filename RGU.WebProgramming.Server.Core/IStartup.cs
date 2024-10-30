@@ -3,6 +3,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace RGU.WebProgramming.Server.Core;
 
+/// <summary>
+/// 
+/// </summary>
 public interface IStartup
 {
     

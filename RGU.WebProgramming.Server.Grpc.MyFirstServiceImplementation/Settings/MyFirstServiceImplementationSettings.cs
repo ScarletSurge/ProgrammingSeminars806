@@ -1,4 +1,4 @@
-﻿namespace RGU.WebProgramming.Server.MyFirstServiceImplementation.Settings;
+﻿namespace RGU.WebProgramming.Server.Grpc.MyFirstServiceImplementation.Settings;
 
 /// <summary>
 /// 

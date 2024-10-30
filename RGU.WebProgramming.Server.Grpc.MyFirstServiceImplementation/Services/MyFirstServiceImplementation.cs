@@ -4,9 +4,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RGU.WebProgramming.Domain.Converters;
 using RGU.WebProgramming.Grpc;
-using RGU.WebProgramming.Server.MyFirstServiceImplementation.Settings;
+using RGU.WebProgramming.Server.Grpc.MyFirstServiceImplementation.Settings;
 
-namespace RGU.WebProgramming.Server.MyFirstServiceImplementation.Services;
+namespace RGU.WebProgramming.Server.Grpc.MyFirstServiceImplementation.Services;
 
 /// <summary>
 /// 

@@ -3,9 +3,9 @@ using Microsoft.Extensions.Configuration;
 
 using RGU.WebProgramming.Server.Core;
 using RGU.WebProgramming.Server.Core.Extensions;
-using RGU.WebProgramming.Server.MyFirstServiceImplementation.Settings;
+using RGU.WebProgramming.Server.Grpc.MyFirstServiceImplementation.Settings;
 
-namespace RGU.WebProgramming.Server.MyFirstServiceImplementation;
+namespace RGU.WebProgramming.Server.Grpc.MyFirstServiceImplementation;
 
 /// <summary>
 /// 

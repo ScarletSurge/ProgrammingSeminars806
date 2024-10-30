@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Routing;
 
 using RGU.WebProgramming.Server.Core;
-using RGU.WebProgramming.Server.MyFirstServiceImplementation.Services;
+using RGU.WebProgramming.Server.Grpc.MyFirstServiceImplementation.Services;
 
-namespace RGU.WebProgramming.Server.MyFirstServiceImplementation;
+namespace RGU.WebProgramming.Server.Grpc.MyFirstServiceImplementation;
 
 /// <summary>
 /// 
