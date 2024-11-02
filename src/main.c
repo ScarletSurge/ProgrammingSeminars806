@@ -186,16 +186,26 @@ int main(
     // return malloc_demo(argc, argv);
     // return allocation_demo(argc, argv);
 
-    int i;
+    int i, rand_generated;
     array instance;
     initialize_array(&instance);
+    srand((unsigned)time(NULL));
 
-    for (i = 0; i < 100; ++i)
+    for (i = 0; i < 30; ++i)
     {
-        insert_into_array(&instance, &i, 0);
+        rand_generated = rand() % 11 + 10;
+        insert_into_array(&instance, &rand_generated, 0);
         forward_const_traversion_array(&instance, printf_callback);
         printf("\n");
     }
+
+    int const value_to_dispose = 15;
+
+    printf("After disposal of value %d operation:\n", value_to_dispose);
+    dispose_from_array_by_value(&instance, &value_to_dispose, compare_int_value);
+    forward_const_traversion_array(&instance, printf_callback);
+    printf("\n");
+
 
     deinitialize_array(&instance);
 
