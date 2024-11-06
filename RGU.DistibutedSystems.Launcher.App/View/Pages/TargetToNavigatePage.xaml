@@ -76,8 +76,14 @@
                 Grid.Column="1"
                 Content="Вернуться назад о__О"
                 Command="{Binding NavigateBackCommand, Mode=OneWay}" />
-        <viewsControls:Spinner Grid.Row="2"
-                               Grid.Column="2"
-                               ItemsCount="{Binding BindMePlease, Mode=OneWay}" />
+        <viewsControls:AspectRatioLayoutDecorator Grid.Row="2"
+                                                  Grid.Column="2"
+                                                  AspectRatio="1.0"
+                                                  Margin="5">
+            <viewsControls:Spinner ItemsCount="{Binding BindMePlease, Mode=OneWay}"
+                                   ItemsBrush="Red"
+                                   Direction="Clockwise"
+                                   RadiusCoefficient="{Binding RadiusCoeff, Mode=OneWay}" />
+        </viewsControls:AspectRatioLayoutDecorator>
     </Grid>
 </Page>

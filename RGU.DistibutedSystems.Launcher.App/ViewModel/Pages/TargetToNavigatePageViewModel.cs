@@ -115,7 +115,9 @@ internal sealed class TargetToNavigatePageViewModel:
 
     private int _bindMePlease;
 
-    private readonly DispatcherTimer _bindMePleaseUpdater;
+    private readonly DispatcherTimer _radiusCoeffUpdater;
+
+    private double _radiusCoeff;
     
     #endregion
 
@@ -143,8 +145,14 @@ internal sealed class TargetToNavigatePageViewModel:
         
         StringsWrappers = new ObservableCollection<StringWrapperViewModel> { new StringWrapperViewModel("1"), new StringWrapperViewModel("12"), new StringWrapperViewModel("123"), new StringWrapperViewModel("1234"), new StringWrapperViewModel("12345") };
 
-        _bindMePleaseUpdater = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Normal,
-            (s, e) => ++BindMePlease, Dispatcher.CurrentDispatcher);
+        //_bindMePleaseUpdater = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Normal, (s, e) => ++BindMePlease, Dispatcher.CurrentDispatcher);
+
+        BindMePlease = 6;
+
+        RadiusCoeff = -0.15;
+        
+        _radiusCoeffUpdater = new DispatcherTimer(TimeSpan.FromMilliseconds(500), DispatcherPriority.Normal, (s, e) => RadiusCoeff += 0.01, Dispatcher.CurrentDispatcher);
+        _radiusCoeffUpdater.Start();
     }
     
     #endregion
@@ -217,6 +225,21 @@ internal sealed class TargetToNavigatePageViewModel:
         {
             _bindMePlease = value;
             RaisePropertyChanged(nameof(BindMePlease));
+        }
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public double RadiusCoeff
+    {
+        get =>
+            _radiusCoeff;
+
+        private set
+        {
+            _radiusCoeff = value;
+            RaisePropertyChanged(nameof(RadiusCoeff));
         }
     }
 

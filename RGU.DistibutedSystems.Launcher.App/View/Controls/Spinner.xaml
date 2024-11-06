@@ -85,62 +85,54 @@
                 <Style.Setters>
                     <Setter Property="Canvas.Left">
                         <Setter.Value>
-                            <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
-                                                                   ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
+                            <nestedMultiBinding:NestedMultiBinding Converter="{viewControls:Spinner+PositioningConverter}"
+                                          ConverterParameter="{x:Static viewControls:Spinner+PositioningConverter+Coord.X}">
                                 <nestedMultiBinding:NestedMultiBinding.Bindings>
                                     <Binding Path="ActualWidth"
+                                             Mode="OneWay"
+                                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}" />
+                                    <Binding Path="ActualHeight"
+                                             Mode="OneWay"
                                              RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}" />
                                     <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
-                                                                           ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Minus}">
+                                                                           ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
                                         <nestedMultiBinding:NestedMultiBinding.Bindings>
-                                            <Binding>
-                                                <Binding.Source>
-                                                    <system:Double>
-                                                        1.0
-                                                    </system:Double>
-                                                </Binding.Source>
-                                            </Binding>
-                                            <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
-                                                ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
-                                                <nestedMultiBinding:NestedMultiBinding.Bindings>
-                                                    <Binding Path="RadiusCoefficient"
-                                                             Mode="OneWay" />
-                                                    <Binding>
-                                                        <Binding.Source>
-                                                            <system:Double>
-                                                                2.0
-                                                            </system:Double>
-                                                        </Binding.Source>
-                                                    </Binding>
-                                                </nestedMultiBinding:NestedMultiBinding.Bindings>
-                                            </nestedMultiBinding:NestedMultiBinding>
+                                            <Binding Path="RadiusCoefficient"
+                                                     Mode="OneWay" />
+                                            <Binding Path="ActualWidth"
+                                                     Mode="OneWay"
+                                                     RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}" />
                                         </nestedMultiBinding:NestedMultiBinding.Bindings>
                                     </nestedMultiBinding:NestedMultiBinding>
+                                    <Binding Path="Phi"
+                                             Mode="OneWay" />
                                 </nestedMultiBinding:NestedMultiBinding.Bindings>
                             </nestedMultiBinding:NestedMultiBinding>
                         </Setter.Value>
                     </Setter>
                     <Setter Property="Canvas.Top">
                         <Setter.Value>
-                            <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
-                                                                   ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
+                            <nestedMultiBinding:NestedMultiBinding Converter="{viewControls:Spinner+PositioningConverter}"
+                                          ConverterParameter="{x:Static viewControls:Spinner+PositioningConverter+Coord.Y}">
                                 <nestedMultiBinding:NestedMultiBinding.Bindings>
+                                    <Binding Path="ActualWidth"
+                                             Mode="OneWay"
+                                             RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}" />
                                     <Binding Path="ActualHeight"
+                                             Mode="OneWay"
                                              RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}" />
                                     <nestedMultiBinding:NestedMultiBinding Converter="{converters:ArithmeticConverter}"
-                                                                           ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Minus}">
+                                                                           ConverterParameter="{x:Static converters:ArithmeticConverter+Operators.Multiply}">
                                         <nestedMultiBinding:NestedMultiBinding.Bindings>
-                                            <Binding>
-                                                <Binding.Source>
-                                                    <system:Double>
-                                                        0.5
-                                                    </system:Double>
-                                                </Binding.Source>
-                                            </Binding>
                                             <Binding Path="RadiusCoefficient"
                                                      Mode="OneWay" />
+                                            <Binding Path="ActualHeight"
+                                                     Mode="OneWay"
+                                                     RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type viewControls:Spinner}}" />
                                         </nestedMultiBinding:NestedMultiBinding.Bindings>
                                     </nestedMultiBinding:NestedMultiBinding>
+                                    <Binding Path="Phi"
+                                             Mode="OneWay" />
                                 </nestedMultiBinding:NestedMultiBinding.Bindings>
                             </nestedMultiBinding:NestedMultiBinding>
                         </Setter.Value>
