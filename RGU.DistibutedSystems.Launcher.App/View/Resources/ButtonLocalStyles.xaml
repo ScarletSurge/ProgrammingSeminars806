@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="RedButtonLocal"
+           TargetType="{x:Type Button}">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="Red" />
+            <Setter Property="Content"
+                    Value="button content" />
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

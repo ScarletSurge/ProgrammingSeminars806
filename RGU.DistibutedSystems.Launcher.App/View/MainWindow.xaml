@@ -11,7 +11,8 @@
         Height="500"
         Width="500"
         FontSize="25"
-        Loaded="MainWindow_OnLoaded">
+        Loaded="MainWindow_OnLoaded"
+        WindowStartupLocation="CenterScreen">
     <Frame x:Name="_mainWindowMainFrame"
            NavigationUIVisibility="Visible" />
 </Window>

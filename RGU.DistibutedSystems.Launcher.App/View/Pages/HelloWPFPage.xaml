@@ -30,7 +30,8 @@
         </Grid.RowDefinitions>
         <Button Grid.Row="0"
                 Grid.Column="0"
-                Content="{Binding NullValueContent, Mode=OneWay, TargetNullValue=1234567}" />
+                Content="{Binding NullValueContent, Mode=OneWay, TargetNullValue=1234567}"
+                Command="{Binding NavigateStylesPageCommand, Mode=OneWay}" />
         <DockPanel Grid.Row="0"
                    Grid.Column="1">
             <Button DockPanel.Dock="Left"

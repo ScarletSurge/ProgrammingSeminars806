@@ -306,8 +306,6 @@ public partial class Spinner:
     /// </summary>
     public static readonly DependencyProperty RotationIntervalProperty = DependencyProperty.Register(nameof(RotationInterval), typeof(TimeSpan), typeof(Spinner), new PropertyMetadata(TimeSpan.FromMilliseconds(40)));
     
-    
-    
     /// <summary>
     /// 
     /// </summary>

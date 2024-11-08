@@ -63,6 +63,11 @@ internal sealed class HelloWPFPageViewModel:
     /// 
     /// </summary>
     private readonly Lazy<ICommand> _zhmakCommand;
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    private readonly Lazy<ICommand> _navigateStylesPageCommand;
 
     #endregion
 
@@ -85,6 +90,7 @@ internal sealed class HelloWPFPageViewModel:
 
         _incrementInt = new Lazy<ICommand>(() => new RelayCommand(_ => IncrementInt(), _ => Int != 2));
         _zhmakCommand = new Lazy<ICommand>(() => new RelayCommand(_ => Zhmak()));
+        _navigateStylesPageCommand = new Lazy<ICommand>(() => new RelayCommand(_ => NavigateStylesPage()));
 
         ButtonsVisibilityState = 0;
         
@@ -196,6 +202,12 @@ internal sealed class HelloWPFPageViewModel:
     public ICommand ZhmakCommand =>
         _zhmakCommand.Value;
     
+    /// <summary>
+    /// 
+    /// </summary>
+    public ICommand NavigateStylesPageCommand =>
+        _navigateStylesPageCommand.Value;
+    
     #endregion
     
     #endregion
@@ -240,6 +252,17 @@ internal sealed class HelloWPFPageViewModel:
     private void Zhmak()
     {
         ButtonsVisibilityState = (ButtonsVisibilityState + 1) % 4;
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    private void NavigateStylesPage()
+    {
+        NavigationManager.Navigate(NavigationContext.Builder.Create()
+            .From<HelloWPFPageViewModel>()
+            .To<StylesDemoPageViewModel>()
+            .Build());
     }
     
     #endregion

@@ -89,6 +89,7 @@ public partial class App:
     {
         Container.Register<HelloWPFPage>(Reuse.Singleton);
         Container.Register<TargetToNavigatePage>(Reuse.Singleton);
+        Container.Register<StylesDemoPage>(Reuse.Singleton);
 
         return this;
     }
@@ -134,6 +135,7 @@ public partial class App:
     {
         Container.Register<HelloWPFPageViewModel>(Reuse.Singleton);
         Container.Register<TargetToNavigatePageViewModel>(Reuse.Singleton);
+        Container.Register<StylesDemoPageViewModel>(Reuse.Singleton);
 
         return this;
     }
@@ -171,7 +173,8 @@ public partial class App:
         
         navigationManager
             .AddMapping<HelloWPFPage, HelloWPFPageViewModel>()
-            .AddMapping<TargetToNavigatePage, TargetToNavigatePageViewModel>();
+            .AddMapping<TargetToNavigatePage, TargetToNavigatePageViewModel>()
+            .AddMapping<StylesDemoPage, StylesDemoPageViewModel>();
 
         return this;
     }

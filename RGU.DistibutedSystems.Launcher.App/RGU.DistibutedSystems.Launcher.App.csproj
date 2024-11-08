@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\RGU.DistributedSystems.UI\RGU.DistributedSystems.UI.csproj" />
       <ProjectReference Include="..\RGU.DistributedSystems.WPF.MVVM\RGU.DistributedSystems.WPF.MVVM.csproj" />
     </ItemGroup>
 
