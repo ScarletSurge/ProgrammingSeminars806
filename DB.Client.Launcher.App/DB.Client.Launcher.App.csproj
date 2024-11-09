@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DB.Client.Domain\DB.Client.Domain.csproj" />
+      <ProjectReference Include="..\DB.Client.Launcher.Protoc.Engine\DB.Client.Launcher.Protoc.Engine.csproj" />
+      <ProjectReference Include="..\DB.Client.UI\DB.Client.UI.csproj" />
+      <ProjectReference Include="..\DB.Client.WPF.MVVM\DB.Client.WPF.MVVM.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="View\MainWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="DryIoc.dll" Version="5.4.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="appsettings.Development.json">
+        <DependentUpon>appsettings.json</DependentUpon>
+      </None>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,23 @@
+syntax = "proto3";
+package db.client.grpc;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "DB.Client.Grpc";
+
+message Product {
+    string barcode = 1;
+    string name = 2;
+    string package_size = 3;
+    double weight = 4;
+}
+
+message Products {
+    repeated Product products = 1;
+}
+
+service ProductService {
+    rpc GetProducts(google.protobuf.Empty) returns (Products);
+    rpc CreateProduct(Product) returns (google.protobuf.BoolValue);
+}

@@ -1,0 +1,18 @@
+﻿<Window x:Class="DB.Client.Launcher.App.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:DB.Client.WPF.MVVM;assembly=DB.Client.WPF.MVVM"
+        xmlns:systemWindowsPresentationCore="clr-namespace:System.Windows;assembly=PresentationCore"
+        xmlns:viewModel="clr-namespace:DB.Client.Launcher.App.ViewModel"
+        mc:Ignorable="d"
+        Title="Памагити, мне очень плоха, пук среньк"
+        Height="500"
+        Width="500"
+        FontSize="25"
+        Loaded="MainWindow_OnLoaded"
+        WindowStartupLocation="CenterScreen">
+    <Frame x:Name="_mainWindowMainFrame"
+           NavigationUIVisibility="Hidden" />
+</Window>
