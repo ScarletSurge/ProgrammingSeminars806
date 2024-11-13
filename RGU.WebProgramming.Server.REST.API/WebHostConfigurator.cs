@@ -1,9 +1,8 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Server.Kestrel.Core;
+using System.Net;
+
 using RGU.WebProgramming.Server.Core;
-using RGU.WebProgramming.Server.Grpc.Settings;
+using RGU.WebProgramming.Server.REST.API.Settings;
 
 namespace RGU.WebProgramming.Server.REST.API;
 

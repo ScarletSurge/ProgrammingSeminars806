@@ -26,6 +26,8 @@
         <ProjectReference Include="..\RGU.WebProgramming.Server.Core\RGU.WebProgramming.Server.Core.csproj" />
         <ProjectReference Include="..\RGU.WebProgramming.Server.Grpc\RGU.WebProgramming.Server.Grpc.csproj" />
         <ProjectReference Include="..\RGU.WebProgramming.Server.Grpc.MyFirstServiceImplementation\RGU.WebProgramming.Server.Grpc.MyFirstServiceImplementation.csproj" />
+        <ProjectReference Include="..\RGU.WebProgramming.Server.REST.API\RGU.WebProgramming.Server.REST.API.csproj" />
+        <ProjectReference Include="..\RGU.WebProgramming.Server.REST.Models\RGU.WebProgramming.Server.REST.Models.csproj" />
     </ItemGroup>
 
     <ItemGroup>

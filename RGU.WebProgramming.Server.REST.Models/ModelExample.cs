@@ -1,4 +1,6 @@
-﻿namespace RGU.WebProgramming.Server.REST.Models;
+﻿using Newtonsoft.Json;
+
+namespace RGU.WebProgramming.Server.REST.Models;
 
 /// <summary>
 /// 
@@ -11,6 +13,7 @@ public class ModelExample
     /// <summary>
     /// 
     /// </summary>
+    [JsonProperty("int_value")]
     public int IntValue
     {
         get;
@@ -21,6 +24,7 @@ public class ModelExample
     /// <summary>
     /// 
     /// </summary>
+    [JsonProperty("string_value")]
     public string StringValue
     {
         get;

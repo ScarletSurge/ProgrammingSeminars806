@@ -98,6 +98,7 @@ internal static class Startup
                             .Select(applicationConfiguratorType => (IApplicationConfigurator)Activator.CreateInstance(applicationConfiguratorType)!)
                             .ToList();
                         
+                        // TODO: deprecated/obsolete code
                         if (applicationConfigurators.Count > 1)
                         {
                             throw new InvalidOperationException("Only one IApplicationConfigurator instance is supported");

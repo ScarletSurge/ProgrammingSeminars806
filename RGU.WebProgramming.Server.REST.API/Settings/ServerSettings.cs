@@ -1,10 +1,21 @@
-﻿namespace RGU.WebProgramming.Server.Grpc.Settings;
+﻿using System.Net;
+
+namespace RGU.WebProgramming.Server.REST.API.Settings;
 
 /// <summary>
 /// 
 /// </summary>
 public sealed class ServerSettings
 {
+    
+    #region Fields
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    private string _listenAddress;
+    
+    #endregion
     
     #region Properties
     
@@ -13,10 +24,14 @@ public sealed class ServerSettings
     /// </summary>
     public string ListenAddress
     {
-        get;
+        get =>
+            _listenAddress.Equals("localhost")
+                ? IPAddress.Loopback.ToString()
+                : _listenAddress;
 
-        set;
-    }
+        set =>
+            _listenAddress = value;
+}
     
     /// <summary>
     /// 

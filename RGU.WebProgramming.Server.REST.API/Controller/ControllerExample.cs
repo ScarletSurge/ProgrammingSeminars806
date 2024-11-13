@@ -1,17 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
 
 using RGU.WebProgramming.Server.REST.Models;
 
 namespace RGU.WebProgramming.Server.REST.API.Controller;
 
-using Microsoft.AspNetCore.Mvc;
-
 /// <summary>
 /// 
 /// </summary>
 [ApiController]
-[Route("rest/api")]
+[Route("api/controller_example")]
 [Produces("application/json")]
 public sealed class ControllerExample:
     ControllerBase
@@ -48,8 +45,33 @@ public sealed class ControllerExample:
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPost("method_example")]
-    public async Task<IActionResult> MethodExampleAsync(
+    [HttpGet("method_example_get")]
+    public async Task<IActionResult> MethodExampleGetAsync(
+        CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            _logger.LogInformation($"Got GET request");
+
+            //
+
+            return StatusCode(StatusCodes.Status200OK);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An exception occured");
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="modelExampleInstance"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("method_example_post")]
+    public async Task<IActionResult> MethodExamplePostAsync(
         [FromBody] ModelExample modelExampleInstance,
         CancellationToken cancellationToken = default)
     {

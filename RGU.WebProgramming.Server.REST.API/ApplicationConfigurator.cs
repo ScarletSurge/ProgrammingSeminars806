@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using RGU.WebProgramming.Server.Core;
+﻿using RGU.WebProgramming.Server.Core;
 using RGU.WebProgramming.Server.REST.API.Controller;
 
 namespace RGU.WebProgramming.Server.REST.API;
 
 public class ApplicationConfigurator:
     IApplicationConfigurator,
-    IStartup
+    Core.IStartup
 {
     
     #region RGU.WebProgramming.Server.Core.IApplicationConfigurator implementation
@@ -17,15 +14,18 @@ public class ApplicationConfigurator:
     public void Configure(
         IApplicationBuilder applicationBuilder)
     {
-        // JToken
         applicationBuilder.UseRouting();
+        applicationBuilder.UseEndpoints(endpointRouteBuilder =>
+        {
+            endpointRouteBuilder.MapControllers();
+        });
     }
     
     #endregion
     
     #region RGU.WebProgramming.Server.Core.IStartup implementation
     
-    /// <inheritdoc cref="IStartup.ConfigureServices" />
+    /// <inheritdoc cref="Core.IStartup.ConfigureServices" />
     public void ConfigureServices(
         HostBuilderContext ctx,
         IServiceCollection services)

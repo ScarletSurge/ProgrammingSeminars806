@@ -1,7 +1,7 @@
 ﻿using DryIoc;
-using Microsoft.Extensions.Configuration;
 
 using RGU.WebProgramming.Server.Core;
+using RGU.WebProgramming.Server.REST.API.Controller;
 
 namespace RGU.WebProgramming.Server.REST.API;
 
@@ -19,9 +19,9 @@ public sealed class ServiceRegistrator:
         IRegistrator registrator,
         IConfiguration configuration)
     {
-        registrator.Register<ApplicationConfigurator>(Reuse.Singleton);
-        registrator.Register<WebHostConfigurator>(Reuse.Singleton);
-        registrator.Register<Cont>
+        registrator.RegisterMany<ApplicationConfigurator>(Reuse.Singleton);
+        registrator.Register<IWebHostConfigurator, WebHostConfigurator>(Reuse.Singleton);
+        registrator.Register<ControllerExample>(Reuse.Singleton);
 
         // TODO: maybe some other types will be registered
     }
