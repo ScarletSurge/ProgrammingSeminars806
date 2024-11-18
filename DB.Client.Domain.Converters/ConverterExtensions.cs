@@ -32,7 +32,8 @@ public static class ConverterExtensions
     /// </summary>
     /// <param name="protobufProduct"></param>
     /// <returns></returns>
-    public static DB.Client.Domain.Product ConvertBack(this DB.Client.Grpc.Product protobufProduct)
+    public static DB.Client.Domain.Product ConvertBack(
+        this DB.Client.Grpc.Product protobufProduct)
     {
         ArgumentNullException.ThrowIfNull(protobufProduct, nameof(protobufProduct));
 

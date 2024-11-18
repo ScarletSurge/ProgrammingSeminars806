@@ -1,4 +1,7 @@
-﻿using DB.Client.Grpc;
+﻿using System.Runtime.CompilerServices;
+using System.Windows;
+using DB.Client.Domain.Converters;
+using DB.Client.Grpc;
 using DB.Client.Launcher.Protoc.Engine.Grpc;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
@@ -74,11 +77,14 @@ public sealed class HostMediator
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public async Task<Product[]> GetProductsFromDbAsync(
+        
         CancellationToken cancellationToken = default)
     {
         try
         {
             var response = await CreateClient().GetProductsAsync(new Empty(), cancellationToken: cancellationToken);
+
+            return response.Products_.Select(ConverterExtensions.ConvertBack).ToArray();
         }
         catch (Exception ex)
         {

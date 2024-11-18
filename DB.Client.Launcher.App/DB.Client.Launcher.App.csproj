@@ -32,5 +32,9 @@
         <DependentUpon>appsettings.json</DependentUpon>
       </None>
     </ItemGroup>
+    
+    <ItemGroup>
+        <Compile Include="..\DB.Client.Domain.Converters\ConverterExtensions.cs" />
+    </ItemGroup>
 
 </Project>

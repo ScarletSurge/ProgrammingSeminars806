@@ -18,6 +18,7 @@ message Products {
 }
 
 service ProductService {
+    // пуксреньк))0)0
     rpc GetProducts(google.protobuf.Empty) returns (Products);
     rpc CreateProduct(Product) returns (google.protobuf.BoolValue);
 }
