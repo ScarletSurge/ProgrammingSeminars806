@@ -17,6 +17,16 @@ internal class StylesDemoPageViewModel:
     /// <summary>
     /// 
     /// </summary>
+    private bool _dataTriggerDemoBool;
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    private int _multiDataTriggerDemoInt;
+    
+    /// <summary>
+    /// 
+    /// </summary>
     private readonly Lazy<ICommand> _clickBrownCircleCommand;
     
     #endregion
@@ -41,8 +51,42 @@ internal class StylesDemoPageViewModel:
     /// <summary>
     /// 
     /// </summary>
+    public bool DataTriggerDemoBool
+    {
+        get =>
+            _dataTriggerDemoBool;
+
+        set
+        {
+            _dataTriggerDemoBool = value;
+            RaisePropertyChanged(nameof(DataTriggerDemoBool));
+        }
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public int MultiDataTriggerDemoInt
+    {
+        get =>
+            _multiDataTriggerDemoInt;
+
+        set
+        {
+            _multiDataTriggerDemoInt = value;
+            RaisePropertyChanged(nameof(MultiDataTriggerDemoInt));
+        }
+    }
+    
+    #region Command
+    
+    /// <summary>
+    /// 
+    /// </summary>
     public ICommand ClickBrownCircleCommand =>
         _clickBrownCircleCommand.Value;
+    
+    #endregion
 
     #endregion
     
@@ -53,10 +97,12 @@ internal class StylesDemoPageViewModel:
     /// </summary>
     private void ClickBrownCircle()
     {
-        NavigationManager.Navigate(NavigationContext.Builder.Create()
-            .From<StylesDemoPageViewModel>()
-            .To<HelloWPFPageViewModel>()
-            .Build());
+        DataTriggerDemoBool = !DataTriggerDemoBool;
+
+        //NavigationManager.Navigate(NavigationContext.Builder.Create()
+        //  .From<StylesDemoPageViewModel>()
+        //  .To<HelloWPFPageViewModel>()
+        //  .Build());
     }
     
     #endregion

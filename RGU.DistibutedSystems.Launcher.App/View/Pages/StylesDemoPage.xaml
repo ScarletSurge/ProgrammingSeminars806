@@ -21,17 +21,19 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="1"
+        <Button Grid.Row="2"
                 Grid.Column="1"
                 Style="{StaticResource RedButton}"
                 Background="Green"/>
-        <Button Grid.Row="2"
+        <Button Grid.Row="1"
                 Grid.Column="1"
                 Background="Orange"
                 Command="{Binding ClickBrownCircleCommand, Mode=OneWay}"
@@ -51,6 +53,70 @@
             <attached:OwnButtonTemplateAttachedProperties.OneMoreContent>
                 <Button Content="Attached content" />
             </attached:OwnButtonTemplateAttachedProperties.OneMoreContent>
+        </Button>
+        <Button Grid.Row="3"
+                Grid.Column="1"
+                Background="Black"
+                Content="Trigger demo">
+            <Button.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="DataTriggerDemoStyle"
+                           TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding DataTriggerDemoBool, Mode=OneWay}"
+                                         Value="True">
+                                <DataTrigger.Setters>
+                                    <Setter Property="Background"
+                                            Value="Blue" />
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition  Binding="{Binding DataTriggerDemoBool, Mode=OneWay}"
+                                               Value="True" />
+                                    <Condition Binding="{Binding MultiDataTriggerDemoInt, Mode=OneWay}"
+                                               Value="0" />
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.Setters>
+                                    <Setter Property="Background"
+                                            Value="Lime" />
+                                </MultiDataTrigger.Setters>
+                            </MultiDataTrigger>
+                            <DataTrigger Binding="{Binding DataTriggerDemoBool, Mode=OneWay}"
+                                         Value="False">
+                                <DataTrigger.Setters>
+                                    <Setter Property="FontSize"
+                                            Value="32" />
+                                    <Setter Property="Foreground"
+                                            Value="Lime" />
+                                    <Setter Property="Content"
+                                            Value="Артём, не спать!!11!" />
+                                </DataTrigger.Setters>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ResourceDictionary>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Style.Triggers>
+                        <Trigger Property="Background"
+                                 Value="Gray">
+                            <Trigger.Setters>
+                                <Setter Property="Foreground"
+                                        Value="Black" />
+                            </Trigger.Setters>
+                        </Trigger>
+                        <Trigger Property="Background"
+                                 Value="Black">
+                            <Trigger.Setters>
+                                <Setter Property="Foreground"
+                                        Value="White" />
+                            </Trigger.Setters>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
         </Button>
     </Grid>
 </Page>
