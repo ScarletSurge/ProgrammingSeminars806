@@ -23,6 +23,8 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\DB.Client.Backend.DBInteraction\DB.Client.Backend.DBInteraction.csproj" />
+        <ProjectReference Include="..\DB.Client.Backend.Grpc\DB.Client.Backend.Grpc.csproj" />
         <ProjectReference Include="..\DB.Client.Backend.Host.Core\DB.Client.Backend.Host.Core.csproj" />
     </ItemGroup>
 
