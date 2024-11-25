@@ -1,40 +1,42 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Launcher.App", "DB.Client.Launcher.App\DB.Client.Launcher.App.csproj", "{FFB79E8A-EC01-42A2-B79A-B9A6C3D4C63A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.WPF.MVVM", "DB.Client.WPF.MVVM\DB.Client.WPF.MVVM.csproj", "{0F88D38F-4D7E-40EC-84DC-BF22D4D378E3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.UI", "DB.Client.UI\DB.Client.UI.csproj", "{A53D0642-CD02-4136-AD54-E490487431CC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{4EE5435C-68AD-4A1A-8EF3-053A3421B244}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{84C96C3E-29B5-4162-88A2-CAAE84C267C6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Backend\Modules", "{AA778430-4A1D-4B9A-BC37-3F3FBD7EDD57}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{EF4CD23E-8C11-4BE7-BE6B-66490B44B33A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Backend.DBInteraction.PostgreSQL", "Backend\Modules\DB.Client.Backend.DBInteraction.PostgreSQL\DB.Client.Backend.DBInteraction.PostgreSQL.csproj", "{02C215C7-A596-45E6-AD24-192E67A7AA70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Domain", "DB.Client.Domain\DB.Client.Domain.csproj", "{0A3C08FD-0096-4E4E-AEBB-A1C6549F3FF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Backend.DBInteraction.Redis", "Backend\Modules\DB.Client.Backend.DBInteraction.Redis\DB.Client.Backend.DBInteraction.Redis.csproj", "{DEC5EA08-4370-40DC-8CCD-E48D1EBD9B34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Core", "DB.Client.Core\DB.Client.Core.csproj", "{F86D009F-EED9-4F7F-99BB-C64932DD757F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Backend.Entrypoint.Grpc", "Backend\Modules\DB.Client.Backend.Entrypoint.Grpc\DB.Client.Backend.Entrypoint.Grpc.csproj", "{D4C4E20F-1728-48E1-A989-3176AEDC639B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Backend.Grpc", "Backend\Modules\DB.Client.Backend.Grpc\DB.Client.Backend.Grpc.csproj", "{52259392-EA66-4DDD-AED1-70CFC9CA8969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Backend.Host", "Backend\DB.Client.Backend.Host\DB.Client.Backend.Host.csproj", "{BEDDAAC4-445E-4B45-8EF2-67FA108EA999}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Backend.Host.Core", "Backend\DB.Client.Backend.Host.Core\DB.Client.Backend.Host.Core.csproj", "{1ED3C954-161F-440B-BBFD-14225E745D6D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{5A840199-429C-480C-AEF9-56F765CDF197}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Backend.Host", "DB.Client.Backend.Host\DB.Client.Backend.Host.csproj", "{BEDDAAC4-445E-4B45-8EF2-67FA108EA999}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Core", "Core\DB.Client.Core\DB.Client.Core.csproj", "{F86D009F-EED9-4F7F-99BB-C64932DD757F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Backend.Host.Core", "DB.Client.Backend.Host.Core\DB.Client.Backend.Host.Core.csproj", "{1ED3C954-161F-440B-BBFD-14225E745D6D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{EF4CD23E-8C11-4BE7-BE6B-66490B44B33A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{AA778430-4A1D-4B9A-BC37-3F3FBD7EDD57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Domain", "Domain\DB.Client.Domain\DB.Client.Domain.csproj", "{0A3C08FD-0096-4E4E-AEBB-A1C6549F3FF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Backend.Grpc", "DB.Client.Backend.Grpc\DB.Client.Backend.Grpc.csproj", "{52259392-EA66-4DDD-AED1-70CFC9CA8969}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Domain.Converters", "Domain\DB.Client.Domain.Converters\DB.Client.Domain.Converters.csproj", "{8FAEBFF7-2D42-4622-9CDB-7D28C43AC2C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Backend.DBInteraction", "DB.Client.Backend.DBInteraction\DB.Client.Backend.DBInteraction.csproj", "{02C215C7-A596-45E6-AD24-192E67A7AA70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Domain.Infrastructure", "Domain\DB.Client.Domain.Infrastructure\DB.Client.Domain.Infrastructure.csproj", "{3683E084-9182-48F3-B8CE-F82EAD84C130}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Launcher.Protoc.Engine", "DB.Client.Launcher.Protoc.Engine\DB.Client.Launcher.Protoc.Engine.csproj", "{032298D0-203D-43FE-81BF-CC2F1FCEC4DA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{84C96C3E-29B5-4162-88A2-CAAE84C267C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Domain.Converters", "DB.Client.Domain.Converters\DB.Client.Domain.Converters.csproj", "{8FAEBFF7-2D42-4622-9CDB-7D28C43AC2C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Launcher.App", "Frontend\DB.Client.Launcher.App\DB.Client.Launcher.App.csproj", "{FFB79E8A-EC01-42A2-B79A-B9A6C3D4C63A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Domain.Infrastructure", "DB.Client.Domain.Infrastructure\DB.Client.Domain.Infrastructure.csproj", "{3683E084-9182-48F3-B8CE-F82EAD84C130}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Launcher.Protoc.Engine", "Frontend\DB.Client.Launcher.Protoc.Engine\DB.Client.Launcher.Protoc.Engine.csproj", "{032298D0-203D-43FE-81BF-CC2F1FCEC4DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.Backend.Entrypoint.Grpc", "DB.Client.Backend.Entrypoint.Grpc\DB.Client.Backend.Entrypoint.Grpc.csproj", "{D4C4E20F-1728-48E1-A989-3176AEDC639B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.UI", "Frontend\DB.Client.UI\DB.Client.UI.csproj", "{A53D0642-CD02-4136-AD54-E490487431CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB.Client.WPF.MVVM", "Frontend\DB.Client.WPF.MVVM\DB.Client.WPF.MVVM.csproj", "{0F88D38F-4D7E-40EC-84DC-BF22D4D378E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -94,6 +96,10 @@ Global
 		{D4C4E20F-1728-48E1-A989-3176AEDC639B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4C4E20F-1728-48E1-A989-3176AEDC639B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4C4E20F-1728-48E1-A989-3176AEDC639B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC5EA08-4370-40DC-8CCD-E48D1EBD9B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC5EA08-4370-40DC-8CCD-E48D1EBD9B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC5EA08-4370-40DC-8CCD-E48D1EBD9B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC5EA08-4370-40DC-8CCD-E48D1EBD9B34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FFB79E8A-EC01-42A2-B79A-B9A6C3D4C63A} = {84C96C3E-29B5-4162-88A2-CAAE84C267C6}
@@ -110,5 +116,6 @@ Global
 		{8FAEBFF7-2D42-4622-9CDB-7D28C43AC2C9} = {EF4CD23E-8C11-4BE7-BE6B-66490B44B33A}
 		{3683E084-9182-48F3-B8CE-F82EAD84C130} = {EF4CD23E-8C11-4BE7-BE6B-66490B44B33A}
 		{D4C4E20F-1728-48E1-A989-3176AEDC639B} = {AA778430-4A1D-4B9A-BC37-3F3FBD7EDD57}
+		{DEC5EA08-4370-40DC-8CCD-E48D1EBD9B34} = {AA778430-4A1D-4B9A-BC37-3F3FBD7EDD57}
 	EndGlobalSection
 EndGlobal
