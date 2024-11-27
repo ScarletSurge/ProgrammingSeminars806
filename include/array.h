@@ -5,6 +5,8 @@
 
 typedef int T;
 
+#define OBTAINING_BY_NONEXISTENT_INDEX 2
+
 typedef struct array
 {
     T *first_element;

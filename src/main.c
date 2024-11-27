@@ -6,6 +6,7 @@
 #include <time.h>
 
 #include "../include/recursion.h"
+#include "../include/border_principle.h"
 
 #define INPUT_ERROR (10)
 
@@ -160,6 +161,20 @@ void printf_callback(
     printf("%d ", *value_ptr);
 }
 
+int lexem_border_selector(
+    char c)
+{
+    return isalpha(c);
+}
+
+int print_lexem_callback(
+    char const *lexem)
+{
+    printf("Found lexem: \"%s\"\n", lexem);
+
+    return 0;
+}
+
 int main(
     int argc,
     char *argv[])
@@ -185,6 +200,11 @@ int main(
 
     // return malloc_demo(argc, argv);
     // return allocation_demo(argc, argv);
+
+    char const *str = "abc1 75 %$a# , |";
+    border_principle(str, isalnum, print_lexem_callback);
+
+    return 0;
 
     int i, rand_generated;
     array instance;

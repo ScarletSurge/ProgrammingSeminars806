@@ -80,6 +80,16 @@ int obtain_from_array_by_index(
 {
     // TODO: validate parameters
 
+    if (array_ptr == NULL || result_ptr == NULL)
+    {
+        return 1;
+    }
+
+    if (index >= array_ptr->virtual_count)
+    {
+        return OBTAINING_BY_NONEXISTENT_INDEX;
+    }
+
     *result_ptr = array_ptr->first_element[index];
 
     return OK;
