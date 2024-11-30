@@ -109,3 +109,39 @@ ALTER TABLE "public"."games_info"
 -- 1NF: rows uniqueness (use PRIMARY KEY) AND attributes value atomicity
 -- 2NF: 1NF AND PRIMARY NOT not decomposable
 -- 3NF: 2NF AND
+
+INSERT INTO "public"."publishers"("id", "name", "employees_count")
+  VALUES (3, 'publisher demo', 75), (4, 'other publisher', 30);
+
+DELETE FROM "public"."publishers"
+  WHERE ("employees_count" BETWEEN 100 AND 150) AND ("id" >= 3 OR "id" = 0); --"employees_count" >= 350 AND "employees_count" <= 650;
+
+UPDATE "public"."publishers"
+    SET "name" = 'updated name',
+        "employees_count" = 125
+    WHERE "id" = 3;
+
+DROP VIEW "public"."view_example";
+CREATE OR REPLACE VIEW "public"."view_example" AS
+    SELECT "id" FROM "public"."publishers";
+
+SELECT * FROM "public"."view_example";
+
+SELECT *
+  FROM "public"."publishers" AS "alias1",
+       "public"."publishers" AS "alias2"
+  WHERE "alias1"."id" = 1 AND "alias2"."id" = 1;
+
+SELECT
+    "pu"."name" AS "publisher_name",
+    "subq"."name" AS "name_from_subquery",
+    "pu"."id" AS "id",
+    "vi"."id" + 10 AS "modified_id",
+    "subq".copies_sold AS "copies_sold_from_subq"
+  FROM "public"."publishers" AS "pu",
+       "public"."view_example" AS "vi",
+       (SELECT * FROM "public"."games_info") AS "subq";
+
+--SELECT [column1 AS alias1, f(column1) AS alias2, expression AS alias3, ...]
+--  FROM [{table_name|view_name|subquery},...]
+--  [WHERE <conditional_expression_on_row>]
