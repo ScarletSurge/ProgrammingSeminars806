@@ -4,9 +4,11 @@
 #include <ctype.h>
 #include <string.h>
 #include <time.h>
+#include <limits.h>
 
 #include "../include/recursion.h"
 #include "../include/border_principle.h"
+#include "../include/postfix_notation.h"
 
 #define INPUT_ERROR (10)
 
@@ -175,6 +177,29 @@ int print_lexem_callback(
     return 0;
 }
 
+int priorities(
+    char operator)
+{
+    switch (operator)
+    {
+        case '+':
+        case '-':
+            return 0;
+        case '*':
+        case '/':
+        case '%':
+            return 1;
+        case '~':
+            return 2;
+        case '^':
+            return 3;
+        case '(':
+            return INT_MIN;
+        default:
+            return -1;
+    }
+}
+
 int main(
     int argc,
     char *argv[])
@@ -202,7 +227,14 @@ int main(
     // return allocation_demo(argc, argv);
 
     char const *str = "abc1 75 %$a# , |";
-    border_principle(str, isalnum, print_lexem_callback);
+    //border_principle(str, isalnum, print_lexem_callback);
+    char *postfix_expression;
+    //char const *infix_expression = "52 * ~14^8 + 3";
+    char const *infix_expression = "~((8252^3-  2034*25^8)  - (25+27)^2/8)";
+    convert_to_postfix_notation(infix_expression, isdigit, priorities, &postfix_expression);
+
+    printf("%s (inf) = %s (postf)\n", infix_expression, postfix_expression);
+    free(postfix_expression);
 
     return 0;
 
