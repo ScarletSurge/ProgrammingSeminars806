@@ -137,11 +137,74 @@ SELECT
     "subq"."name" AS "name_from_subquery",
     "pu"."id" AS "id",
     "vi"."id" + 10 AS "modified_id",
-    "subq".copies_sold AS "copies_sold_from_subq"
+    "subq"."copies_sold" AS "copies_sold_from_subq",
+    10 AS "const_value"
   FROM "public"."publishers" AS "pu",
        "public"."view_example" AS "vi",
-       (SELECT * FROM "public"."games_info") AS "subq";
+       (SELECT * FROM "public"."games_info") AS "subq"
+  WHERE <expr>
+  ORDER BY "modified_id" DESC, "id" ASC;
+
+CREATE TABLE IF NOT EXISTS "public"."departments"
+(
+    "id" INT NOT NULL PRIMARY KEY,
+    "name" TEXT NOT NULL
+);
+
+INSERT INTO "public"."departments"("id", "name")
+    VALUES (1, 'Dep1'), (2, 'Dep2'), (3, 'Dep3');
+
+SELECT COUNT(*)
+    FROM "public"."departments";
+
+CREATE TABLE IF NOT EXISTS "public"."employees"
+(
+    "id" INT NOT NULL PRIMARY KEY,
+    "surname" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "salary" MONEY NOT NULL,
+    "department_id" INT,
+    FOREIGN KEY("department_id") REFERENCES "public"."departments"("id")
+);
+
+DROP TABLE "public"."employees"
+
+INSERT INTO "public"."employees"("id", "surname", "name", "salary", "department_id")
+    VALUES (1, 'sur1', 'name1', 100, 1),
+           (2, 'sur2', 'name2', 120, 2),
+           (3, 'sur3', 'name3', 125, 1),
+           (4, 'sur4', 'name4', 130, 3),
+           (5, 'sur5', 'name5', 150, 2),
+           (6, 'sur6', 'name6', 100, 1),
+           (7, 'sur7', 'name7', 95, NULL);
+
+SELECT "department_id" AS "dep_id",
+       AVG("salary"::numeric) AS "avg_salary"
+    FROM "public"."employees", "public"."departments"
+    GROUP BY "department_id"
+    ORDER BY "dep_id";
+
+SELECT * FROM "public"."employees"
+  ORDER BY "department_id";
+
+SELECT *
+  FROM "public"."departments" AS "d1", "public"."departments" AS "d2";
+
+SELECT *
+  FROM "public"."departments" AS "d1"
+    CROSS JOIN "public"."departments" AS "d2";
+
+INSERT INTO "public"."departments"("id", "name")
+    VALUES (4, 'Dep4');
+
+SELECT *
+  FROM "public"."employees" AS "e"
+    INNER JOIN "public"."departments" AS "d"
+      ON "e"."department_id" = "d"."id";
+
+
 
 --SELECT [column1 AS alias1, f(column1) AS alias2, expression AS alias3, ...]
 --  FROM [{table_name|view_name|subquery},...]
+--  GROUP BY {column_name},[{column_name}...]
 --  [WHERE <conditional_expression_on_row>]
