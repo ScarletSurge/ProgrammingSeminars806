@@ -11,6 +11,7 @@
 #define BINARY_SEARCH_FOUND 0
 #define BINARY_SEARCH_NOT_FOUND 1
 
+//
 int gorner(
     char const *str,
     int base,
