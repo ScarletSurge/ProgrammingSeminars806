@@ -7,11 +7,11 @@ typedef int tvalue;
 
 typedef struct trie_item
 {
-    //unsigned char end_flag: 1;
-
+    tvalue *value;
     struct trie_item **subtrees;
 } trie_item, *p_trie_item;
 
+// трие
 typedef struct trie
 {
     char *alphabet;
@@ -28,6 +28,17 @@ int deinitialize_trie(
 
 int insert_into_trie(
     p_trie to_insert_into,
-    char const *to_insert);
+    char const *key,
+    tvalue const *value);
+
+int obtain_from_trie(
+    trie const *to_obtain_from,
+    char const *key,
+    tvalue **value_ptr_placement);
+
+int dispose_from_trie(
+    p_trie to_dispose_from,
+    char const *key,
+    tvalue *value_placement);
 
 #endif //UNTITLED1_TRIE_H
